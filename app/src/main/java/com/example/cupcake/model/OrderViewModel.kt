@@ -29,6 +29,12 @@ class OrderViewModel : ViewModel() {
 
     val dateOptions = getPickupOptions()
 
+    private val _name = MutableLiveData<String>()
+    val name: LiveData<String> = _name
+
+    private val _email = MutableLiveData<String>()
+    val email: LiveData<String> = _email
+
     fun setQuantity(numberCupcakes: Int) {
         _quantity.value = numberCupcakes
         updatePrice()
@@ -36,6 +42,14 @@ class OrderViewModel : ViewModel() {
 
     fun setFlavor(desiredFlavor: String) {
         _flavour.value = desiredFlavor
+    }
+
+    fun setName(desiredName: String) {
+        _name.value = desiredName
+    }
+
+    fun setEmail(desiredEmail: String) {
+        _email.value = desiredEmail
     }
 
     fun setDate(pickupDate: String) {
@@ -56,6 +70,8 @@ class OrderViewModel : ViewModel() {
         _flavour.value = ""
         _date.value = dateOptions[0]
         _price.value = 0.0
+        _name.value = ""
+        _email.value = ""
     }
 
     private fun getPickupOptions(): List<String> {
